@@ -1,0 +1,96 @@
+# 生成的文件会使用这个名字 <filename>.html ..
+filename:
+
+# 三语标题
+中文:
+ENGLISH:
+日本語:
+
+# 内容性质
+# 例 1： BDRip
+# 例 2： S1-3 BDRip MP4 Ver
+# 例 3： BDRip MP4 Ver
+# 例 4： S1 + S2 + OVA BDRip Reseed
+内容性质: BDRip
+
+位深: 10-bit
+分辨率: 1080p
+编码: HEVC
+类型: BDRip
+# （必填*）标题标注
+# Fin 普通完整季度的高画质版本
+# MP4 Ver MP4 移动版本
+# S1-S3 + OVA Fin 如果需要注明多季度合集只标注在这里
+# S1-S2 Reseed Fin 重发同理
+# 发布时根据情况灵活使用标注，如 MOVIE Fin OVA Fin Kamigami Ver 先行版
+# 标注内嵌字幕信息时使用全大写的 CHS CHT，双语字幕 CHS&JPN
+# 标题中有多种标注时用 + 隔开，类似S1-S3 + SP + MOVIE Fin
+标注: Fin
+
+# 制作人员
+总监:
+压制:
+整理:
+发布:
+
+# 来源感谢
+来源感谢: |
+
+# 海报图
+图片链接800px:
+主站图片来源链接:
+主站图片原作者ID:
+
+# 多个体积版本
+多版本: False
+生成主站发布稿: True
+
+# 重发 / Reseed
+重发: False
+重发修正: |
+重发修正英文: |
+
+# 合作组信息
+# 这个项目与 <strong>中文组名</strong> 合作，感谢他们精心制作的字幕。
+# This project is in collaboration with <strong>English Group Name</strong>. Thanks to them for elaborating Chinese subtitles.
+合作组: False
+合作组中文:
+合作组英文:
+合作组信息:
+合作组信息英文:
+
+# 内嵌字幕信息
+# 内封原盘 ENG + JPN 字幕。
+# Embedded official ENG + JPN PGS.
+内嵌字幕: False
+内嵌字幕信息:
+内嵌字幕信息英文:
+
+# 评论音轨与外挂音频
+# 部分剧集内封评论音轨。内封评论音轨。外挂 FLAC 5.1 + Headphone X。
+# Certain episodes contain commentary tracks. Embedded commentary track. MKA contains FLAC 5.1 + Headphone X.
+评论音轨与外挂音频: False
+评论音轨与外挂音频信息:
+评论音轨与外挂音频信息英文:
+
+# 画质吐槽
+画质吐槽: |
+画质吐槽英文: |
+
+# 发布吐槽
+发布吐槽: |
+
+对比图HTML: |
+对比图MD: |
+
+# SAYA IS ∞ LOLICON!
+MediaInfo: |
+
+# 用于程序运行时添加 HTML 换行符
+多行文本关键字:
+  - 画质吐槽
+  - 画质吐槽英文
+  - 来源感谢
+  - 重发修正
+  - 重发修正英文
+  - 发布吐槽
