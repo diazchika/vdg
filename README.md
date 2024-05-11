@@ -1,6 +1,7 @@
 # VDG (VCB-S Draft Gen)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+[![Deploy to PyPI](https://github.com/diazchika/vdg/actions/workflows/python-publish.yml/badge.svg)](https://github.com/diazchika/vdg/actions/workflows/python-publish.yml)
 
 ## Introduction
 
@@ -17,7 +18,7 @@
 
 `vdg new --path <path>`
 
-会在`<path>`路径下生成 `config.yaml`，里面很多空要填...
+会在`<path>`路径下生成 `config.yaml`，里面很多发布信息要填...
 
 `<path>` 默认为 `config.yaml`
 
@@ -30,6 +31,14 @@ YAML 里具体有什么看[这里](https://github.com/diazchika/vdg/blob/main/vd
 会读取`<path-to-yaml>`指定的 yaml 文件，并根据它生成发布稿。
 
 `<path>` 默认为 `config.yaml`
+
+### 其他
+
+`vdg -h`
+
+## 点评
+
+diazchika: 总之就是一道大型填空题
 
 ## License
 

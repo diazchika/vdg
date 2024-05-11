@@ -103,6 +103,7 @@ def generate_markdown_draft(html_draft_str: str, comparison_md: str) -> str:
     """
     # Initialize the HTML to Markdown converter
     converter = html2text.HTML2Text()
+    converter.body_width = 0
     converter.ignore_links = True
 
     # Convert HTML to Markdown
@@ -184,7 +185,8 @@ def generate_drafts(path_to_yaml):
     print(f"稿件 诞生在 {output_dir}")
 
 
-def create_yaml_config(destination_path: Union[str, Path], template_path: Union[str, Path] = 'templates/yaml.template') -> None:
+def create_yaml_config(destination_path: Union[str, Path],
+                       template_path: Union[str, Path] = 'templates/yaml.template') -> None:
     """
     复制一份 YAML 模版到 destination_path
 
@@ -203,3 +205,24 @@ def create_yaml_config(destination_path: Union[str, Path], template_path: Union[
 
     # User Prompt
     print(f"config.yaml 诞生在 {output_path}")
+
+
+def generate_links(path_to_yaml) -> None:
+    """Generate drafts based on the provided YAML configuration."""
+    with open(path_to_yaml, "r") as file:
+        release_info = yaml.safe_load(file)
+
+    # project_name = release_info.get("filename")
+    links = release_info.get("BT站链接")
+
+    # output_dir = Path(path_to_yaml).parent
+    # output_dir.mkdir(parents=True, exist_ok=True)
+
+    # file_paths = output_dir / f"{project_name}_links.txt"
+
+    # with file_paths.open("w") as file:
+    for link in links.split('\n'):
+        if link != "":
+            print(f'<a href="{link}" rel="noopener" target="_blank">{link}</a>\n')
+
+    # print(f"Links 诞生在 {output_dir}")
