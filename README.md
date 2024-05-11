@@ -32,6 +32,10 @@ YAML 里具体有什么看[这里](https://github.com/diazchika/vdg/blob/main/vd
 
 `<path>` 默认为 `config.yaml`
 
+### 其他
+
+`vdg -h`
+
 ## 点评
 
 diazchika: 总之就是一道大型填空题

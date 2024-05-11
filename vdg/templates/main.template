@@ -92,8 +92,9 @@
 [/box]
 {% endif %}
 
-<!-- Image Credit: <a href="{{主站图片来源链接}}" rel="noopener" target="_blank">{{主站图片原作者ID}}</a> -->
-
+{% if 主站图片原作者ID %}
+Image Credit: <a href="{{主站图片来源链接}}" rel="noopener" target="_blank">{{主站图片原作者ID}}</a>
+{% endif %}
 <label for="medie-info-switch" class="btn btn-inverse-primary" title="展开MediaInfo">MediaInfo</label>
 
 <pre class="js-medie-info-detail medie-info-detail" style="display: none;">
