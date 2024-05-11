@@ -31,6 +31,5 @@ setup(
     ],
     project_urls={
         'github': 'https://github.com/diazchika/vdg',
-        'VCB-Studio': 'https:///vcb-s.com',
     }
 )
