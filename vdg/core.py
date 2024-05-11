@@ -103,6 +103,7 @@ def generate_markdown_draft(html_draft_str: str, comparison_md: str) -> str:
     """
     # Initialize the HTML to Markdown converter
     converter = html2text.HTML2Text()
+    converter.body_width = 0
     converter.ignore_links = True
 
     # Convert HTML to Markdown
