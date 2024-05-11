@@ -1,10 +1,16 @@
 # 生成的文件会使用这个名字 <filename>.html ..
 filename:
 
-# 三语标题
+# 番剧标题
 中文:
 ENGLISH:
 日本語:
+分行生成: False
+
+# 短标题
+中文_s:
+ENGLISH_s:
+日本語_s:
 
 # 内容性质
 # 例 1： BDRip
