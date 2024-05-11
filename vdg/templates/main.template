@@ -1,0 +1,111 @@
+{% if 合作组 %}
+{{合作组信息}}
+{% endif %}
+
+{{画质吐槽}}
+
+{% if 内嵌字幕 %}
+{{ 内嵌字幕信息 }}
+{% endif %}
+
+{% if 评论音轨与外挂音频 %}
+{{ 评论音轨与外挂音频信息 }}
+{% endif %}
+
+{{发布吐槽}}
+
+<!--more-->
+
+感谢所有参与制作者:
+总监: {{总监}}
+压制: {{压制}}
+整理: {{整理}}
+发布: {{发布}}
+分流: VCB-Studio CDN 分流成员
+
+{% if 重发 %}
+[box style="info"]
+重发修正：
+{{重发修正}}
+[/box]
+{% endif %}
+
+[box style="download"]
+{% if 重发 %}
+10-bit 1080p HEVC (Reseed)
+{% else %}
+10-bit 1080p HEVC
+{% endif %}
+
+<!-- <a href="https://bangumi.moe/torrent/xxxxxxxx" rel="noopener" target="_blank">https://bangumi.moe/torrent/xxxxxxxx</a>
+
+<a href="https://share.acgnx.se/show-xxxxxxxxxxxxxxx.html" rel="noopener" target="_blank">https://share.acgnx.se/show-xxxxxxxxxxxxxxx.html</a>
+
+<a href="https://www.acgnx.se/show-xxxxxxxx.html" rel="noopener" target="_blank">https://www.acgnx.se/show-xxxxxxxx.html</a>
+
+<a href="https://acg.rip/t/xxxxxx" rel="noopener" target="_blank">https://acg.rip/t/xxxxxx</a>
+
+<a href="https://share.dmhy.org/topics/view/xxxxxx.html" rel="noopener" target="_blank">https://share.dmhy.org/topics/view/xxxxxx.html</a>
+
+<a href="https://nyaa.si/view/xxxxxx" rel="noopener" target="_blank">https://nyaa.si/view/xxxxxx</a> -->
+[/box]
+
+{% if 多版本 %}
+[box style="download"]
+8-bit 720p HEVC
+
+<a href="https://bangumi.moe/torrent/xxxxxxxx" rel="··noopener" target="_blank">https://bangumi.moe/torrent/xxxxxxxx</a>
+
+<a href="https://share.acgnx.se/show-xxxxxxxxxxxxxxx.html" rel="noopener" target="_blank">https://share.acgnx.se/show-xxxxxxxxxxxxxxx.html</a>
+
+<a href="https://www.acgnx.se/show-xxxxxxxx.html" rel="noopener" target="_blank">https://www.acgnx.se/show-xxxxxxxx.html</a>
+
+<a href="https://acg.rip/t/xxxxxx" rel="noopener" target="_blank">https://acg.rip/t/xxxxxx</a>
+
+<a href="https://share.dmhy.org/topics/view/xxxxxx.html" rel="noopener" target="_blank">https://share.dmhy.org/topics/view/xxxxxx.html</a>
+
+<a href="https://nyaa.si/view/xxxxxx" rel="noopener" target="_blank">https://nyaa.si/view/xxxxxx</a>
+[/box]
+{% endif %}
+
+{% if 重发 %}
+<!-- ! 将旧页面更新为 Reseed 项目时，需要将之前的链接移至最底部并划掉 -->
+<hr />
+
+<!-- ! 部分旧页面上有大量不知道该怎么处理的吐槽段，可以放在这里 -->
+旧吐槽
+
+<!-- ! 用 `del` 按钮划掉旧链接，如果遇到度盘链接或 720p 链接可以直接删除 -->
+[box style="download"]
+10-bit 1080p AVC
+<del><a href="https://bangumi.moe/torrent/xxxxxxxx" rel="noopener" target="_blank">https://bangumi.moe/torrent/xxxxxxxx</a></del>
+
+<del><a href="https://share.acgnx.se/show-xxxxxxxxxxxxxxx.html" rel="noopener" target="_blank">https://share.acgnx.se/show-xxxxxxxxxxxxxxx.html</a></del>
+
+<del><a href="https://www.acgnx.se/show-xxxxxx.html" rel="noopener" target="_blank">https://www.acgnx.se/show-xxxxxx.html</a></del>
+
+<del><a href="https://acg.rip/t/xxxxxx" rel="noopener" target="_blank">https://acg.rip/t/xxxxxx</a></del>
+
+<del><a href="https://share.dmhy.org/topics/view/xxxx.html" rel="noopener" target="_blank">https://share.dmhy.org/topics/view/xxxx.html</a></del>
+
+<del><a href="https://nyaa.si/view/xxxxxx" rel="noopener" target="_blank">https://nyaa.si/view/xxxxxx</a></del>
+[/box]
+{% endif %}
+
+<!-- Image Credit: <a href="{{主站图片来源链接}}" rel="noopener" target="_blank">{{主站图片原作者ID}}</a> -->
+
+<label for="medie-info-switch" class="btn btn-inverse-primary" title="展开MediaInfo">MediaInfo</label>
+
+<pre class="js-medie-info-detail medie-info-detail" style="display: none;">
+{{MediaInfo}}
+</pre>
+
+{% if 重发 %}
+<!-- ! RESEED （如果需要）更新旧页面 -->
+
+[box style="info"]<!-- 然后在 box 下第一行**紧跟着**写 -->
+本页面的作品已被更新的合集替代，请移步下载新版：
+<!-- 这里空行，然后下一行开始点击 `link` 粘贴 Reseed 页面，注意勾选 `在新标签页中打开链接` -->
+<a href="https://vcb-s.com/archives/xxxx" rel="noopener" target="_blank">https://vcb-s.com/archives/xxxx</a>
+[/box]
+{% endif %}
