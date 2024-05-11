@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name="vdg",
-    version="0.2.1",
+    version="0.2.2",
     author="diazchika",
     author_email="halberd-civic.0c@icloud.com",
     description="VCB-Studio Draft Generator 发布稿生成器",
