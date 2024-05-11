@@ -29,4 +29,8 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
+    project_urls={
+        'github': 'https://github.com/diazchika/vdg',
+        'VCB-Studio': 'https:///vcb-s.com',
+    }
 )
