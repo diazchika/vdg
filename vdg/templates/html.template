@@ -2,12 +2,13 @@
     <img src="{{ 图片链接800px }}" /><br />
     <br />
 
-{% if 分行生成 %}
-    {{ 中文 }} {{ 内容性质 }}<br />
-    {{ ENGLISH }} {{ 内容性质 }}<br />
-    {{ 日本語 }} {{ 内容性质 }}<br />
+{% for title in 番剧标题 %}
+{% if title["分行生成"] %}
+    {{ title["中文"] }} {{ title["内容性质"] }}<br />
+    {{ title["ENGLISH"] }} {{ title["内容性质"] }}<br />
+    {{ title["日本語"] }} {{ title["内容性质"] }}<br />
 {% else %}
-    {{ 中文 }} / {{ ENGLISH }} / {{ 日本語 }} {{ 内容性质 }}<br />
+    {{ title["中文"] }} / {{ title["ENGLISH"] }} / {{ title["日本語"] }} {{ title["内容性质"] }}<br />
 {% endif %}
     <br />
 

@@ -2,15 +2,22 @@
 filename:
 
 # 番剧标题
-中文:
-ENGLISH:
-日本語:
-分行生成: False
+番剧标题:
+  - 中文:
+    ENGLISH:
+    日本語:
+    分行生成: False
 
-# 短标题
-中文_s:
-ENGLISH_s:
-日本語_s:
+# 文章标题
+中文_Title:
+ENGLISH_Title:
+日本語_Title:
+
+# 文章标题（短）
+中文_Title_short:
+ENGLISH_Title_short:
+日本語_Title_short:
+
 
 # 内容性质
 # 例 1： BDRip
