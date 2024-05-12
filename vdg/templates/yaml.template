@@ -1,23 +1,29 @@
 # 生成的文件会使用这个名字 <filename>.html ..
 filename:
 
-# 番剧标题
-中文:
-ENGLISH:
-日本語:
-分行生成: False
-
-# 短标题
-中文_s:
-ENGLISH_s:
-日本語_s:
-
 # 内容性质
 # 例 1： BDRip
 # 例 2： S1-3 BDRip MP4 Ver
 # 例 3： BDRip MP4 Ver
 # 例 4： S1 + S2 + OVA BDRip Reseed
-内容性质: BDRip
+# 番剧标题
+番剧标题:
+  - 中文:
+    ENGLISH:
+    日本語:
+    内容性质: BDRip
+    分行生成: False
+
+
+文章标题:
+  中文:
+  ENGLISH:
+  日本語:
+
+文章标题简写:
+  中文:
+  ENGLISH:
+  日本語:
 
 位深: 10-bit
 分辨率: 1080p

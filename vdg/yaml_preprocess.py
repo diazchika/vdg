@@ -15,8 +15,8 @@ def preprocess_yaml_dict(release_info: Dict[str, Any]) -> Dict[str, Any]:
             release_info[f"{field}_HTML"] = release_info[field].replace("\n", "<br />\n")
 
     # 标题简写如果没填就填原标题
-    for key in ["中文", "ENGLISH", "日本語"]:
-        if release_info[f"{key}_s"] is None:
-            release_info[f"{key}_s"] = release_info[key]
+    for key in release_info["文章标题简写"]:
+        if release_info["文章标题简写"][key] is None:
+            release_info["文章标题简写"][key] = release_info["文章标题"][key]
 
     return release_info
