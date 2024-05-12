@@ -10,6 +10,7 @@
 {% else %}
     {{ title["中文"] }} / {{ title["ENGLISH"] }} / {{ title["日本語"] }} {{ title["内容性质"] }}<br />
 {% endif %}
+{% endfor %}
     <br />
 
 {% if 内嵌字幕 %}

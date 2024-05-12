@@ -8,15 +8,15 @@ filename:
     日本語:
     分行生成: False
 
-# 文章标题
-中文_Title:
-ENGLISH_Title:
-日本語_Title:
+文章标题:
+  中文:
+  ENGLISH:
+  日本語:
 
-# 文章标题（短）
-中文_Title_short:
-ENGLISH_Title_short:
-日本語_Title_short:
+文章标题简写:
+  中文:
+  ENGLISH:
+  日本語:
 
 
 # 内容性质
