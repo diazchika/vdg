@@ -1,19 +1,11 @@
+BT站链接: |
+
 # 生成的文件会使用这个名字 <filename>.html ..
 filename:
 
-# 内容性质
-# 例 1： BDRip
-# 例 2： S1-3 BDRip MP4 Ver
-# 例 3： BDRip MP4 Ver
-# 例 4： S1 + S2 + OVA BDRip Reseed
-# 番剧标题
-番剧标题:
-  - 中文:
-    ENGLISH:
-    日本語:
-    内容性质: BDRip
-    分行生成: False
-
+# 多个体积版本
+多版本: False
+生成主站发布稿: True
 
 文章标题:
   中文:
@@ -29,7 +21,6 @@ filename:
 分辨率: 1080p
 编码: HEVC
 类型: BDRip
-# （必填*）标题标注
 # Fin 普通完整季度的高画质版本
 # MP4 Ver MP4 移动版本
 # S1-S3 + OVA Fin 如果需要注明多季度合集只标注在这里
@@ -39,28 +30,23 @@ filename:
 # 标题中有多种标注时用 + 隔开，类似S1-S3 + SP + MOVIE Fin
 标注: Fin
 
-# 制作人员
-总监:
-压制:
-整理:
-发布:
-
-# 来源感谢
-来源感谢: |
-
 # 海报图
 图片链接800px:
 主站图片来源链接:
 主站图片原作者ID:
 
-# 多个体积版本
-多版本: False
-生成主站发布稿: True
-
-# 重发 / Reseed
-重发: False
-重发修正: |
-重发修正英文: |
+# 内容性质
+# 例 1： BDRip
+# 例 2： S1-3 BDRip MP4 Ver
+# 例 3： BDRip MP4 Ver
+# 例 4： S1 + S2 + OVA BDRip Reseed
+# 番剧标题
+番剧标题:
+  - 中文:
+    ENGLISH:
+    日本語:
+    内容性质: BDRip
+    分行生成: False
 
 # 合作组信息
 # 这个项目与 <strong>中文组名</strong> 合作，感谢他们精心制作的字幕。
@@ -92,7 +78,21 @@ filename:
 # 发布吐槽
 发布吐槽: |
 
-BT站链接: |
+# 重发 / Reseed
+重发: False
+重发修正: |
+重发修正英文: |
+
+# 制作人员
+# 如果是重發就是原製作人員
+总监:
+压制:
+整理:
+发布:
+
+# 来源感谢
+# 如果是重發就是原來源感謝
+来源感谢: |
 
 对比图HTML: |
 对比图MD: |
