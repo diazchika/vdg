@@ -16,9 +16,7 @@ def html_to_markdown(html_str: str, comparison_md: str) -> str:
     :return:
     """
     # Convert HTML to Markdown
-    converter = html2text.HTML2Text()
-    converter.body_width = 0
-    converter.ignore_links = True
+    converter = html2text.HTML2Text(bodywidth=0)
 
     # Convert HTML to Markdown
     md_str = converter.handle(html_str)
@@ -28,7 +26,7 @@ def html_to_markdown(html_str: str, comparison_md: str) -> str:
         blocks = md_str.rsplit('* * *', 1)
         md_str = "* * *".join([blocks[0], "\n" + comparison_md])
 
-    return clean_up(md_str)
+    return md_str
 
 
 def generate_drafts(path_to_yaml):
