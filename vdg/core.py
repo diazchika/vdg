@@ -1,81 +1,34 @@
-import re
 from pathlib import Path
-from typing import Union, Dict, Any
+from typing import Union
 
 import html2text
 import yaml
 
-from vdg.utils import render_from_template_str, read_template
+from vdg.utils import read_template, clean_up, generate_draft
 from vdg.yaml_preprocess import preprocess_yaml_dict
 
 
-def generate_html_draft(release_info: Dict[str, Any],
-                        template_path: Union[str, Path] = 'templates/html.template') -> str:
-    """
-    生成 HTML 发布稿。
-    :param release_info: The context dictionary with release information.
-    :param template_path: The path to the HTML template file.
-    :return: The generated HTML string.
-    """
-
-    # 读取 HTML 模版
-    html_template_str = read_template(template_path)
-
-    # 生成发布稿
-    html_str = render_from_template_str(html_template_str, **release_info)
-
-    # 去除重复空行、多余缩进。
-    cleaned_html_str = re.sub(r'\s*\n\s*', '\n', html_str)
-    return cleaned_html_str.strip()
-
-
-def generate_main_draft(release_info: Dict[str, Any],
-                        template_path: Union[str, Path] = 'templates/main.template') -> str:
-
-    # 读取 主站发布稿 模版
-    main_template_str = read_template(template_path)
-
-    # 生成发布稿
-    main_str = render_from_template_str(main_template_str, **release_info)
-
-    # 将连续两个以上的换行符减少为两个
-    cleaned_str = re.sub(r'\n{3,}', '\n\n', main_str)
-    return cleaned_str.strip()
-
-
-def generate_markdown_draft(html_draft_str: str, comparison_md: str) -> str:
+def html_to_markdown(html_str: str, comparison_md: str) -> str:
     """
     Generate Markdown release draft.
-    :param html_draft_str: HTML 发布稿字符串
+    :param html_str: HTML 字符串
     :param comparison_md: Markdown格式的对比图字符串
     :return:
     """
-    # Initialize the HTML to Markdown converter
+    # Convert HTML to Markdown
     converter = html2text.HTML2Text()
     converter.body_width = 0
     converter.ignore_links = True
 
     # Convert HTML to Markdown
-    markdown_content = converter.handle(html_draft_str)
+    md_str = converter.handle(html_str)
 
     # Split the Markdown content at the last occurrence of '* * *' and append the comparison section
-    blocks = markdown_content.rsplit('* * *', 1)
-    markdown_content = "* * *".join([blocks[0], "\n" + comparison_md])
+    if comparison_md is not None:
+        blocks = md_str.rsplit('* * *', 1)
+        md_str = "* * *".join([blocks[0], "\n" + comparison_md])
 
-    return markdown_content
-
-
-def generate_titles(release_info: Dict[str, Any], template_path: Union[str, Path] = 'templates/titles.template') -> str:
-    """
-    生成标题。
-    :param release_info: The context dictionary with release information.
-    :param template_path: The path to the titles template file.
-    :return: The generated titles string.
-    """
-
-    titles_template_str = read_template(template_path)
-    titles_str = render_from_template_str(titles_template_str, **release_info)
-    return titles_str
+    return clean_up(md_str)
 
 
 def generate_drafts(path_to_yaml):
@@ -86,10 +39,10 @@ def generate_drafts(path_to_yaml):
         release_info = preprocess_yaml_dict(yaml.safe_load(file))
 
     # 生成各种 HTML，主站，Markdown 以及标题
-    html_content = generate_html_draft(release_info)
-    markdown_content = generate_markdown_draft(html_content, release_info["对比图MD"])
-    main_site_content = generate_main_draft(release_info)
-    titles_content = generate_titles(release_info)
+    html_content = generate_draft(release_info, 'templates/html.template')
+    main_site_content = generate_draft(release_info, 'templates/main.template')
+    titles_content = generate_draft(release_info, 'templates/titles.template')
+    markdown_content = html_to_markdown(html_content, release_info["对比图MD"])
 
     # 设置输出路径
     output_dir = Path(path_to_yaml).parent
@@ -142,17 +95,8 @@ def generate_links(path_to_yaml) -> None:
     with open(path_to_yaml, "r") as file:
         release_info = yaml.safe_load(file)
 
-    # project_name = release_info.get("filename")
     links = release_info.get("BT站链接")
 
-    # output_dir = Path(path_to_yaml).parent
-    # output_dir.mkdir(parents=True, exist_ok=True)
-
-    # file_paths = output_dir / f"{project_name}_links.txt"
-
-    # with file_paths.open("w") as file:
     for link in links.split('\n'):
         if link != "":
             print(f'<a href="{link}" rel="noopener" target="_blank">{link}</a>\n')
-
-    # print(f"Links 诞生在 {output_dir}")
