@@ -36,32 +36,33 @@ def generate_drafts(path_to_yaml):
     with open(path_to_yaml, "r") as file:
         release_info = preprocess_yaml_dict(yaml.safe_load(file))
 
-    # 生成各种 HTML，主站，Markdown 以及标题
-    html_content = generate_draft(release_info, 'templates/html.template')
-    main_site_content = generate_draft(release_info, 'templates/main.template')
-    titles_content = generate_draft(release_info, 'templates/titles.template')
-    markdown_content = html_to_markdown(html_content, release_info["对比图MD"])
-
-    # 设置输出路径
     output_dir = Path(path_to_yaml).parent
     project_name = release_info["filename"] or release_info["ENGLISH"]
 
-    file_paths = {
-        "html": output_dir / f"{project_name}.html",
-        "markdown": output_dir / f"{project_name}.md",
-        "main_html": output_dir / f"{project_name}_main.html",
-        "titles": output_dir / f"{project_name}_titles.txt"
-    }
+    configs = [
+        {
+            "template_path": "templates/html.template",
+            "output_dir": output_dir / f"{project_name}.html"
+        },
+        {
+            "template_path": "templates/main.template",
+            "output_dir": output_dir / f"{project_name}_main.html"
+        },
+        {
+            "template_path": "templates/titles.template",
+            "output_dir": output_dir / f"{project_name}_titles.txt"
+        }
+    ]
 
-    # 写入文件
-    with file_paths["html"].open("w") as file:
-        file.write(html_content)
-    with file_paths["markdown"].open("w") as file:
+    for config in configs:
+        content = generate_draft(release_info, config["template_path"])
+        with config["output_dir"].open("w") as file:
+            file.write(content)
+
+    html_content = generate_draft(release_info, 'templates/html.template')
+    markdown_content = html_to_markdown(html_content, release_info["对比图MD"])
+    with (output_dir / f"{project_name}.md").open("w") as file:
         file.write(markdown_content)
-    with file_paths["main_html"].open("w") as file:
-        file.write(main_site_content)
-    with file_paths["titles"].open("w") as file:
-        file.write(titles_content)
 
     print(f"稿件 诞生在 {output_dir.absolute()}")
 

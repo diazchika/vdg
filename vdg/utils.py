@@ -24,6 +24,7 @@ def render_from_template_str(template_str: str, **kwargs) -> str:
 
 
 def clean_up(s: str) -> str:
+    s = re.sub(r'^\n+', '', s)
     s = re.sub(r'[ \t]+$', '', s, flags=re.MULTILINE)
     s = re.sub(r'\n{3,}', '\n\n', s)
     return s
@@ -59,3 +60,6 @@ def wrap_anchor_tags_with_del(html_string):
     result = pattern.sub(wrap_with_del, html_string)
     return result
 
+
+def wrap_link_with_anchor_tag(link):
+    return f'<a href="{link}" target="_blank" rel="noopener">{link}</a>'

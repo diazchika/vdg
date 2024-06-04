@@ -46,8 +46,10 @@
 {% if not 重发 %}
 <p>
     感谢所有参与制作者 / Thanks to our participating members: <br>
+    {% if not 重发 %}
     总监 / Script: {{总监}} <br>
     压制 / Encode: {{压制}} <br>
+    {% endif %}
     整理 / Collate: {{整理}} <br>
     发布 / Upload: {{发布}} <br>
     分流 / Seed: VCB-Studio CDN 分流成员 <br>
