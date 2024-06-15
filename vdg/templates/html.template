@@ -8,7 +8,7 @@
     {{ title["ENGLISH"] }} {{ title["内容性质"] }}<br />
     {{ title["日本語"] }} {{ title["内容性质"] }}<br />
 {% else %}
-    {{ title["中文"] }} / {{ title["ENGLISH"] }} / {{ title["日本語"] }} {{ title["内容性质"] }}<br />
+    {{ title["三语片名"] }} {{ title["内容性质"] }}<br />
 {% endif %}
     <br />
 {% endfor %}
