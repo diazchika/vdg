@@ -38,20 +38,22 @@ def generate_drafts(path_to_yaml):
 
     output_dir = Path(path_to_yaml).parent
     project_name = release_info["filename"] or release_info["ENGLISH"]
+    use_v2 = release_info["use_v2"]
 
+    html_config = {
+        "template_path": "templates/html_v2.template" if use_v2 else "templates/html.template",
+        "output_dir": output_dir / (f"{project_name}_v2.html" if use_v2 else f"{project_name}.html")
+    }
+    main_config = {
+        "template_path": "templates/main.template",
+        "output_dir": output_dir / f"{project_name}_main.html"
+    }
+    titles_config = {
+        "template_path": "templates/titles.template",
+        "output_dir": output_dir / f"{project_name}_titles.txt"
+    }
     configs = [
-        {
-            "template_path": "templates/html.template",
-            "output_dir": output_dir / f"{project_name}.html"
-        },
-        {
-            "template_path": "templates/main.template",
-            "output_dir": output_dir / f"{project_name}_main.html"
-        },
-        {
-            "template_path": "templates/titles.template",
-            "output_dir": output_dir / f"{project_name}_titles.txt"
-        }
+        html_config, main_config, titles_config
     ]
 
     for config in configs:
@@ -59,7 +61,7 @@ def generate_drafts(path_to_yaml):
         with config["output_dir"].open("w") as file:
             file.write(content)
 
-    html_content = generate_draft(release_info, 'templates/html.template')
+    html_content = generate_draft(release_info, html_config["template_path"])
     markdown_content = html_to_markdown(html_content, release_info["对比图MD"])
     with (output_dir / f"{project_name}.md").open("w") as file:
         file.write(markdown_content)

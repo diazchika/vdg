@@ -38,13 +38,8 @@ def generate_draft(release_info: Dict[str, Any], template_path: Union[str, Path]
     :return: The generated string.
     """
 
-    # 读取 HTML 模版
     template_str = read_template(template_path)
-
-    # 生成发布稿
     draft_str = render_from_template_str(template_str, **release_info)
-
-    # 去除重复空行、多余缩进。
     return clean_up(draft_str)
 
 

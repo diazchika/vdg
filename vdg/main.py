@@ -12,7 +12,6 @@ def parse_args():
 
     parser_gen = subparsers.add_parser('gen', help='根据YAML在当前目录下生成发布稿。vdg gen -h')
     parser_gen.add_argument('-p', '--path', type=str, help='YAML文件路径', default='./config.yaml')
-    parser_gen.add_argument('-l', '--links', action='store_true', help='输出方便在主站粘贴的BT站点链接。')
 
     args = parser.parse_args()
 
@@ -21,13 +20,10 @@ def parse_args():
 
 def main():
     args = parse_args()
-
     if args.command == 'new':
         create_yaml_config(args.path)
-    elif args.command == 'gen' and not args.links:
+    elif args.command == 'gen':
         generate_drafts(args.path)
-    elif args.command == 'gen' and args.links:
-        generate_links(args.path)
 
 
 if __name__ == "__main__":

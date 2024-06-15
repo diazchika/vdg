@@ -1,3 +1,7 @@
+{% if 组员提名 %}
+本番由 <strong>组员提名</strong>，应要求制作。感谢他们为 VCB-Studio 发展做出的无私奉献。
+{% endif %}
+
 {% if 合作组 %}
 这个项目与 <strong>{{合作组中文}}</strong> 合作，感谢他们精心制作的字幕。
 {% endif %}
@@ -75,6 +79,7 @@
 {% if 主站图片原作者ID %}
 Image Credit: <a href="{{主站图片来源链接}}" rel="noopener" target="_blank">{{主站图片原作者ID}}</a>
 {% endif %}
+
 <label for="medie-info-switch" class="btn btn-inverse-primary" title="展开MediaInfo">MediaInfo</label>
 
 <pre class="js-medie-info-detail medie-info-detail" style="display: none;">

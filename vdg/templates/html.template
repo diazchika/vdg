@@ -26,6 +26,11 @@
     <br />
 {% endif %}
 
+{% if 组员提名 %}
+    本番由 组员提名，应要求制作。感谢他们为 VCB-Studio 发展做出的无私奉献。
+    This project was nominated by our members and produced upon request. Thanks to them for their selfless dedication to the development of VCB-Studio.
+{% endif %}
+
 {% if 合作组 %}
     这个项目与 <strong>{{合作组中文}}</strong> 合作，感谢他们精心制作的字幕。<br />
     This project is in collaboration with <strong>{{合作组英文}}</strong>. Thanks to them for elaborating Chinese subtitles.<br />
