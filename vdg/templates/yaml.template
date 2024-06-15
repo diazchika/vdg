@@ -12,15 +12,22 @@ use_v2: False
 # 发布时根据情况灵活使用标注，如 MOVIE Fin OVA Fin Kamigami Ver 先行版
 # 标注内嵌字幕信息时使用全大写的 CHS CHT，双语字幕 CHS&JPN
 # 标题中有多种标注时用 + 隔开，类似S1-S3 + SP + MOVIE Fin
-文章标题:
-  中文:
-  ENGLISH:
-  日本語:
 
-文章标题简写:
-  中文:
-  ENGLISH:
-  日本語:
+# 三语标题片名:
+#   中文:
+#   ENGLISH:
+#   日本語:
+
+# 三语标题片名简写:
+#   中文:
+#   ENGLISH:
+#   日本語:
+
+#  中文 / ENGLISH / 日本語
+外站标题片名:
+
+#  ENGLISH / 中文
+主站标题片名:
 
 位深: 10-bit
 分辨率: 1080p
@@ -97,6 +104,7 @@ use_v2: False
     日本語:
     内容性质: BDRip
     分行生成: False
+    片名结构: 中文/English/日本語
 
 # 来源感谢
 # 如果是重發就是原來源感謝
