@@ -1,3 +1,8 @@
+{% if 合作组 %}
+<meta title="[{{合作组中文}}&VCB-Studio] {{ 外站标题片名 }} {{位深}} {{分辨率}} {{编码}} {{类型}} [{{标注}}]">
+{% else %}
+<meta title="[VCB-Studio] {{ 外站标题片名 }} {{位深}} {{分辨率}} {{编码}} {{类型}} [{{标注}}]">
+{% endif %}
 <p>
     <img src="{{ 图片链接800px }}" /><br />
     <br />
@@ -27,8 +32,9 @@
 {% endif %}
 
 {% if 组员提名 %}
-    本番由 组员提名，应要求制作。感谢他们为 VCB-Studio 发展做出的无私奉献。
-    This project was nominated by our members and produced upon request. Thanks to them for their selfless dedication to the development of VCB-Studio.
+    本番由 <strong>组员提名</strong>，应要求制作。感谢他们为 VCB-Studio 发展做出的无私奉献。<br />
+    This project was <strong>nominated by our members</strong> and produced upon request. Thanks to them for their selfless dedication to the development of VCB-Studio.<br />
+    <br />
 {% endif %}
 
 {% if 合作组 %}

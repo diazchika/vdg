@@ -41,19 +41,15 @@ def generate_drafts(path_to_yaml):
     use_v2 = release_info["use_v2"]
 
     html_config = {
-        "template_path": "templates/html_v2.template" if use_v2 else "templates/html.template",
+        "template_path": "templates/html_v2.tmpl" if use_v2 else "templates/html.tmpl",
         "output_dir": output_dir / (f"{project_name}_v2.html" if use_v2 else f"{project_name}.html")
     }
     main_config = {
-        "template_path": "templates/main.template",
+        "template_path": "templates/main.tmpl",
         "output_dir": output_dir / f"{project_name}_main.html"
     }
-    titles_config = {
-        "template_path": "templates/titles.template",
-        "output_dir": output_dir / f"{project_name}_titles.txt"
-    }
     configs = [
-        html_config, main_config, titles_config
+        html_config, main_config
     ]
 
     for config in configs:
@@ -70,13 +66,13 @@ def generate_drafts(path_to_yaml):
 
 
 def create_yaml_config(destination_path: Union[str, Path],
-                       template_path: Union[str, Path] = 'templates/yaml.template') -> None:
+                       template_path: Union[str, Path] = 'templates/yaml.tmpl') -> None:
     """
     复制一份 YAML 模版到 destination_path
 
     Args:
         destination_path (Union[str, Path]): The directory where the config.yaml file will be created.
-        template_path (Union[str, Path], optional): The path to the YAML template file. Defaults to 'yaml.template'.
+        template_path (Union[str, Path], optional): The path to the YAML template file. Defaults to 'yaml.tmpl'.
     """
 
     # 读取 YAML 模版
