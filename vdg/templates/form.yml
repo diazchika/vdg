@@ -1,0 +1,75 @@
+## ------------------ 公网发布后 ------------------
+BT站链接: |
+  尚未发布
+
+## ------------------ 配置 ------------------
+filename:
+新番: False
+重发: False
+# 如果都为 True，则也许为重制+重发这种情况，目前还没有实现哈哈
+
+## ------------------ 标题 ------------------
+# 合作组 Chinese 名，必须用 sequence，例：[喵萌奶茶屋, philosophy-raws]
+# 如果没有合作组必须留空。务必检查正片文件的文件名。
+合作组:
+
+外站标题: [中文, ENGLISH, 日本語]
+主站标题: [ENGLISH, 中文]
+位深: 10-bit
+分辨率: 1080p
+编码: HEVC
+类型: BDRip
+标注:
+
+## ------------------ 正文 ------------------
+
+图片链接800px:
+主站图片:
+  链接:
+  作者:
+
+内容标题:
+  - 名称: [中文, ENGLISH, 日本語]
+    内容性质:
+    分行生成: False
+
+内嵌字幕: # 如果没有 CHS 必须留空。
+  CHS: # 内封原盘 ENG + JPN 字幕。
+  ENG: # Embedded official ENG + JPN PGS.
+
+额外音轨: # 如果没有 CHS 必须留空。
+  CHS: # 部分剧集内封评论音轨。内封评论音轨。外挂 FLAC 5.1 + Headphone X。
+  ENG: # Certain episodes contain commentary tracks. Embedded commentary track. MKA contains FLAC 5.1 + Headphone X.
+
+组员提名: False
+
+画质吐槽: # 如果出现中英文混排，需要于每处中英文之间添加一个半角空格。
+  CHS: |
+
+  ENG: |
+
+发布吐槽: |
+
+# 制作人员名单
+# <span style="color: #ffffff">XXX</span>
+总监:
+压制:
+整理:
+发布:
+
+来源感谢: | # 如果是重發就是原來源感謝
+
+重发修正: # 注意标点
+  CHS: |
+
+  ENG: |
+
+主站旧下载BOX: | # 重发时需要填写
+
+## ------------------ 附加信息 ------------------
+
+对比图:
+  HTML: "url.html"
+  MD: "url.md"
+
+MediaInfo: "mediainfo.txt"

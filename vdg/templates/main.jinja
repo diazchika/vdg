@@ -1,0 +1,50 @@
+{% if 组员提名 %}本番由 <strong>组员提名</strong>，应要求制作。感谢他们为 VCB-Studio 发展做出的无私奉献。{% endif %}
+
+{% if 合作组 %}这个项目与 <strong>{{合作组 | join(' & ')}}</strong> 合作，感谢他们精心制作的字幕。{% endif %}
+
+{% if 画质吐槽.CHS %}{{画质吐槽.CHS}}{% endif %}
+
+{% if 内嵌字幕.CHS %}{{ 内嵌字幕信息.CHS }}{% endif %}
+
+{% if 额外音轨.CHS %}{{ 额外音轨.CHS }}{% endif %}
+
+{% if 发布吐槽 %}{{发布吐槽}}{% endif %}
+
+<!--more-->
+
+感谢所有参与制作者:
+{% if 总监 %}总监: {{总监}}{% endif +%}
+{% if 压制 %}压制: {{压制}}{% endif +%}
+{% if 整理 %}整理: {{整理}}{% endif +%}
+{% if 发布 %}发布: {{发布}}{% endif +%}
+分流: VCB-Studio CDN 分流成员
+
+{% if 重发修正.CHS %}
+[box style="info"]
+重发修正：
+
+{{重发修正.CHS}}
+[/box]
+{% endif %}
+
+[box style="download"]
+10-bit 1080p HEVC {% if 重发 %} (Reseed) {% endif +%}
+
+{{ BT站链接 | format_links }}
+[/box]
+
+{% if 旧下载BOX %}
+    <hr />
+
+    {{ 旧下载BOX | del_anchors }}
+{% endif %}
+
+{% if 主站图片.作者 %}
+Image Credit: <a href="{{主站图片.链接}}" rel="noopener" target="_blank">{{主站图片.作者}}</a>
+{% endif %}
+
+<label for="medie-info-switch" class="btn btn-inverse-primary" title="展开MediaInfo">MediaInfo</label>
+
+<pre class="js-medie-info-detail medie-info-detail" style="display: none;">
+{{ MediaInfo | read_file }}
+</pre>

@@ -1,4 +1,5 @@
 # setup.py
+import vdg
 from setuptools import setup, find_packages
 import os
 
@@ -9,7 +10,7 @@ def read(fname):
 
 setup(
     name="vdg",
-    version="0.2.5",
+    version=vdg.__version__,
     author="diazchika",
     author_email="halberd-civic.0c@icloud.com",
     description="VCB-Studio Draft Generator 发布稿生成器",
@@ -17,7 +18,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        'vdg': ['templates/*.template'],
+        'vdg': ['templates/*.jinja', 'templates/form.yml'],
     },
     entry_points={
         'console_scripts': [

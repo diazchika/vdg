@@ -1,0 +1,120 @@
+<p>
+    <img src="{{ 图片链接800px }}" /><br>
+    <br>
+
+{% for title in 内容标题 %}
+{% if title.分行生成 %}
+    {% for name in title.名称 %}
+        {{ name }} {{ title.内容性质 }}<br>
+    {% endfor %}
+{% else %}
+    {{ title.名称 | join(" / ") }} {{ title.内容性质 }}<br>
+{% endif %}
+    <br>
+{% endfor %}
+
+{% if 内嵌字幕.CHS %}
+    {{ 内嵌字幕.CHS }}<br>
+    {{ 内嵌字幕.ENG }}<br>
+{% endif %}
+
+{% if 额外音轨.CHS %}
+    {{ 额外音轨.CHS }}<br>
+    {{ 额外音轨.ENG }}<br>
+{% endif %}
+{% if 内嵌字幕.CHS or 额外音轨.CHS %}
+    <br>
+{% endif %}
+
+{% if 组员提名 %}
+    本番由 <strong>组员提名</strong>，应要求制作。感谢他们为 VCB-Studio 发展做出的无私奉献。<br>
+    This project was <strong>nominated by our members</strong> and produced upon request. Thanks to them for their selfless dedication to the development of VCB-Studio.<br>
+    <br>
+{% endif %}
+
+{% if 合作组 %}
+    这个项目与 <strong>{{ 合作组 | join(" & ") }}</strong> 合作，感谢他们精心制作的字幕。<br>
+    This project is in collaboration with <strong>{{ 合作组 | group_name_eng() | join(" & ") }}</strong>. Thanks to them for elaborating Chinese subtitles.<br>
+    <br>
+{% endif %}
+
+{% if 画质吐槽.CHS %}
+    {{ 画质吐槽.CHS | add_br }}
+    {{ 画质吐槽.ENG | add_br }}
+    <br>
+{% endif %}
+
+{% if 发布吐槽 %}
+    {{ 发布吐槽 | add_br }}
+    <br>
+{% endif %}
+</p>
+<hr />
+
+{% if 重发修正.CHS %}
+<p>
+    重发修正：<br>
+    {{重发修正.CHS | add_br}}
+    <br>
+    Reseed comment:<br>
+    {{重发修正.ENG | add_br}}
+    <br>
+</p>
+<hr />
+{% endif %}
+
+<p>
+    感谢所有参与制作者 / Thanks to our participating members: <br>
+    {% if 总监 %}总监 / Script: {{总监}} <br>{% endif %}
+    {% if 压制 %}压制 / Encode: {{压制}} <br>{% endif %}
+    {% if 整理 %}整理 / Collate: {{整理}} <br>{% endif %}
+    {% if 发布 %}发布 / Upload: {{发布}} <br>{% endif %}
+    分流 / Seed: VCB-Studio CDN 分流成员 <br>
+    <br>
+
+    {% if 来源感谢 %}
+    感谢所有资源提供者 / Thanks to all resource providers: <br>
+    {{来源感谢 | add_br}}
+    <br>
+    {% endif %}
+</p>
+<hr />
+
+{% if 新番 %}
+<p>
+    VCB-Studio 已不再保证收集作品相关 CD 和扫图资源，详情请参见 <a href="https://vcb-s.com/archives/14331">https://vcb-s.com/archives/14331</a>。<br>
+    Please refer to <a href="https://vcb-s.com/archives/14331">https://vcb-s.com/archives/14331</a> for more information about that VCB-Studio will no longer guarantee to include relevant CDs and scans.<br>
+    <br>
+
+    本组（不）定期招募新成员。详情请参见 <a href="https://vcb-s.com/archives/16986">https://vcb-s.com/archives/16986</a>。<br>
+    Please refer to <a href="https://vcb-s.com/archives/16986">https://vcb-s.com/archives/16986</a> about information of our (un)scheduled recruitment.<br>
+    <br>
+
+    播放器教程索引： <a href="https://vcb-s.com/archives/16639" target="_blank">VCB-Studio 播放器推荐</a><br>
+    中文字幕分享区： <a href="https://bbs.acgrip.com/" target="_blank">Anime 分享论坛</a><br>
+    项目计划与列表： <a href="https://vcb-s.com/archives/138" target="_blank">VCB-Studio 项目列表</a><br>
+    特殊格式与说明： <a href="https://vcb-s.com/archives/7949" target="_blank">WebP 扫图说明</a><br>
+    <br>
+</p>
+
+{% elif 重发 %}
+
+<p>
+    本次发布来自 VCB-Studio 旧作重发计划。我们会不定期重发过去发布过的合集，或为补充做种，或为修正制作错漏，或为整合系列合集。<br>
+    This is a release of VCB-Studio Reseed Project. We would re-upload previous torrents from time to time, to resurrect old torrents with few seeders, to correct errors/omissions, or to batch separate releases that belong to a same series. <br>
+    <br>
+</p>
+<hr />
+<p>
+    播放器教程索引： <a href="https://vcb-s.com/archives/16639" target="_blank">VCB-Studio 播放器推荐</a><br>
+    中文字幕分享区： <a href="https://bbs.acgrip.com/" target="_blank">Anime 分享论坛</a><br>
+    项目计划与列表： <a href="https://vcb-s.com/archives/138" target="_blank">VCB-Studio 项目列表</a><br>
+    特殊格式与说明： <a href="https://vcb-s.com/archives/7949" target="_blank">WebP 扫图说明</a><br>
+    <br>
+</p>
+{% endif %}
+
+{% if 对比图.HTML %}
+    <hr />
+    {{对比图.HTML | read_file}}
+{% endif %}

@@ -1,3 +1,4 @@
 include README.md
 include LICENSE
-include templates/*.template
+include templates/*.jinja
+include templates/form.yml

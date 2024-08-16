@@ -1,0 +1,4 @@
+html2text==2024.2.26
+Jinja2==3.1.4
+PyYAML==6.0.1
+setuptools==71.0.4
