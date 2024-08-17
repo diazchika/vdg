@@ -7,7 +7,6 @@ from typing import Union
 import yaml
 import html2text
 from jinja2 import Environment, FileSystemLoader
-from pangu import spacing_text
 
 import vdg.filters
 
