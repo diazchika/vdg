@@ -63,7 +63,7 @@ class WebAutomationBase:
         select = Select(dropdown)
         select.select_by_value(value)
 
-class BangumiMoeAutomation(WebAutomationBase):
+class BangumiUploader(WebAutomationBase):
     LOGIN_BUTTON_XPATH = '//*[@id="main-menu-button"]'
     USERNAME_FIELD_XPATH = '/html/body/div[4]/md-dialog/md-content/form/md-input-group[1]/input'
     PASSWORD_FIELD_XPATH = '/html/body/div[4]/md-dialog/md-content/form/md-input-group[3]/input'
@@ -108,7 +108,7 @@ class BangumiMoeAutomation(WebAutomationBase):
         print("Please press the Upload button manually and close the geckodriver after you are done.")
         # self.click_element(self.FINAL_PUBLISH_BUTTON_XPATH)
 
-class NyaaSiAutomation(WebAutomationBase):
+class NyaaUploader(WebAutomationBase):
     CAPTCHA_IFRAME_XPATH = "/html/body/div[1]/form/div[3]/div/div/div/div/iframe"
     USERNAME_FIELD_XPATH = '//*[@id="username"]'
     PASSWORD_FIELD_XPATH = '//*[@id="password"]'

@@ -14,7 +14,7 @@ class DraftGenerator:
     def __init__(self, release_info):
         self.release_info = release_info
 
-    def format_text(self, text):
+    def __format_text(self, text):
         """Format text by adding spaces between CJK and English characters."""
         text = re.sub(f"({self.CJK_PATTERN})({self.ENG_PATTERN})", r"\1 \2", text)
         text = re.sub(f"({self.ENG_PATTERN})({self.CJK_PATTERN})", r"\1 \2", text)
@@ -23,7 +23,7 @@ class DraftGenerator:
         text = re.sub(r"\n{3,}", "\n", text)
         return text
 
-    def __generate_drafts(self, template_name):
+    def __generate_draft(self, template_name):
         """Generate drafts using the specified Jinja2 template."""
         env = Environment(
             loader=FileSystemLoader(Path(__file__).parent.absolute() / "templates"),
@@ -37,18 +37,18 @@ class DraftGenerator:
 
         # Load and render the template
         template = env.get_template(template_name)
-        content = self.format_text(template.render(**self.release_info))
+        content = self.__format_text(template.render(**self.release_info))
         return content
 
-    def generate_bangumi_draft(self):
+    def __generate_bangumi_draft(self):
         """Generate the Bangumi draft."""
-        return self.__generate_drafts("bangumi.html.jinja")
+        return self.__generate_draft("bangumi.html.jinja")
 
-    def generate_bangumi_title(self):
+    def __generate_bangumi_title(self):
         """Generate the Bangumi title."""
-        return self.__generate_drafts("bangumi.title.txt.jinja")
+        return self.__generate_draft("bangumi.title.txt.jinja")
 
-    def generate_nyaa_draft(self):
+    def __generate_nyaa_draft(self):
         """Generate the Nyaa draft by converting the Bangumi draft to markdown."""
         bangumi_draft = self.generate_bangumi_draft()
         converter = html2text.HTML2Text(bodywidth=0)
@@ -62,6 +62,40 @@ class DraftGenerator:
             md_str = "* * *".join([md_str.rsplit("* * *", 1)[0], "\n" + comparison_md])
         return md_str
 
-    def generate_vcb_s_com_draft(self):
+    def __generate_vcb_s_draft(self):
         """Generate the VCB-S.com draft."""
-        return self.__generate_drafts("vcb-s.com.html.jinja")
+        return self.__generate_draft("vcb-s.html.jinja")
+
+    def __generate_vcb_s_title(self):
+        """Generate the VCB-S.com title."""
+        return self.__generate_draft("vcb-s.title.txt.jinja")
+
+    def generate(self, site, content):
+        if site == 'bangumi' and content == "draft":
+            return self.generate_bangumi_draft()
+        elif site == 'bangumi' and content == "title":
+            return self.generate_bangumi_title()
+        elif site == 'nyaa' and content == "draft":
+            return self.generate_nyaa_draft()
+        elif site == 'nyaa' and content == "title":
+            return self.generate_bangumi_title()
+        elif site == 'vcb-s' and content == "draft":
+            return self.generate_vcb_s_draft()
+        elif site == 'vcb-s' and content == "title":
+            return self.generate_vcb_s_title()
+        else:
+            raise ValueError("Invalid site or content type.")
+
+    @staticmethod
+    def __get_empty_config():
+        return read_from_file( Path(__file__).parent.absolute() / "templates/form.yml" )
+
+    @staticmethod
+    def generate_configs():
+        if os.path.exists("./config.yml"):
+            print("WARNING: Config already exists. Override? (y/n)")
+            if input().lower() != "y":
+                return
+        write_to_file("./config.yml", DraftGenerator.__get_empty_config())
+        for filename in ["./url.html", "./url.md", "./mediainfo.txt"]:
+            create_file(filename)
