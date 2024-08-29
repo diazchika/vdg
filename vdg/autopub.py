@@ -1,17 +1,31 @@
-import os
-import configparser
+import time
+import random
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
-from contextlib import contextmanager
+
 
 class WebAutomationBase:
     def __init__(self):
         self.driver = None
 
+    def random_delay(self, min_delay=0.5, max_delay=1):
+        time.sleep(random.uniform(min_delay, max_delay))
+
     def get_driver(self):
-        self.driver = webdriver.Firefox()
+        options = Options()
+        options.add_argument("--width=1920")
+        options.add_argument("--height=1080")
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("general.useragent.override", "Mozilla/5.0 (iPhone14,3; U; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19A346 Safari/602.1")
+        profile.set_preference("dom.webdriver.enabled", False)
+        profile.set_preference("useAutomationExtension", False)
+        profile.set_preference("privacy.trackingprotection.enabled", True)
+        profile.update_preferences()
+        options.profile = profile
+        self.driver = webdriver.Firefox(options=options)
 
     def wait_for_element(self, by, value, timeout=10):
         return WebDriverWait(self.driver, timeout).until(
@@ -32,27 +46,31 @@ class WebAutomationBase:
             return value in element.get_attribute(attribute)
         return _predicate
 
-    def load_config(self, config_file):
-        config = configparser.ConfigParser()
-        config.read(config_file)
-        return config
+    # def load_config(self, config_file):
+    #     config = configparser.ConfigParser()
+    #     config.read(config_file)
+    #     return config
 
     def click_element(self, xpath):
         element = self.wait_for_clickable(By.XPATH, xpath)
         element.click()
+        self.random_delay()
 
     def enter_text(self, xpath, text):
         field = self.wait_for_element(By.XPATH, xpath)
         field.send_keys(text)
+        self.random_delay()
 
     def select_dropdown_by_text(self, xpath, text):
         dropdown = self.wait_for_element(By.XPATH, xpath)
         select = Select(dropdown)
         select.select_by_visible_text(text)
+        self.random_delay()
 
     def upload_file(self, xpath, file_path):
         upload_field = self.wait_for_element(By.XPATH, xpath)
         upload_field.send_keys(file_path)
+        self.random_delay()
 
     def switch_to_frame(self, xpath):
         frame = self.wait_for_element(By.XPATH, xpath)
@@ -62,6 +80,7 @@ class WebAutomationBase:
         dropdown = self.wait_for_element(By.XPATH, xpath)
         select = Select(dropdown)
         select.select_by_value(value)
+        self.random_delay()
 
 class BangumiUploader(WebAutomationBase):
     LOGIN_BUTTON_XPATH = '//*[@id="main-menu-button"]'
@@ -102,10 +121,12 @@ class BangumiUploader(WebAutomationBase):
         self.select_dropdown_by_value(self.CAT_SELECT_DROPDOWN_XPATH, cat)
         self.click_element(self.SOURCE_CODE_BUTTON_XPATH)
         self.enter_text(self.SOURCE_CODE_FIELD_XPATH, desc)
+        self.upload_file(self.UPLOAD_BUTTON_XPATH, torrent_path)
         self.click_element(self.VCB_IDENTITY_BUTTON_XPATH)
         self.click_element(self.TEAM_SYNC_CHECKBOX_XPATH)
-        self.upload_file(self.UPLOAD_BUTTON_XPATH, torrent_path)
         print("Please press the Upload button manually and close the geckodriver after you are done.")
+        input("Press Enter to quit...")
+        self.driver.close()
         # self.click_element(self.FINAL_PUBLISH_BUTTON_XPATH)
 
 class NyaaUploader(WebAutomationBase):
@@ -150,3 +171,5 @@ class NyaaUploader(WebAutomationBase):
         self.enter_text(self.INFORMATION_FIELD_XPATH, "https://vcb-s.com/archives/138")
         self.enter_text(self.DESCRIPTION_FIELD_XPATH, desc)
         print("Please press the Upload button manually and close the geckodriver after you are done.")
+        input("Press Enter to quit...")
+        self.driver.close()

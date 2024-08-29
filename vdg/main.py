@@ -1,19 +1,22 @@
 import argparse
 import sys
 
+import yaml
+
+from vdg import __version__
 from vdg.draftgen import DraftGenerator
 from vdg.autopub import BangumiUploader, NyaaUploader
-from vdg.utils import read_from_file, write_to_file, create_file
+from vdg.utils import read_from_file, write_to_file
 
 def parse_args():
     parser = argparse.ArgumentParser(description="发布稿生成/發佈腳本.")
-    parser.add_argument('--version', action='version', version=vdg.__version__)
+    parser.add_argument('--version', action='version', version=__version__)
     subparsers = parser.add_subparsers(dest='command', required=True)
 
-    parser_new = subparsers.add_parser('new', help='在當前目錄下生成新的配置文檔 config.yml, 存放截圖鏈接的文件 url.html 和 url.md, 以及用於存放 MediaInfo 的 mediainfo.txt.')
+    subparsers.add_parser('new', help='在當前目錄下生成新的配置文檔 config.yml, 存放截圖鏈接的文件 url.html 和 url.md, 以及用於存放 MediaInfo 的 mediainfo.txt.')
 
     parser_gen = subparsers.add_parser('gen', help='根据在当前目录下的配置文檔生成发布稿.')
-    parser_pub.add_argument('--site', type=str, choices=['bangumi', 'nyaa', 'vcb-s', 'all'], help='选择需要生成稿件的站点 (bangumi,nyaa,vcb-s,all).', default='all')
+    parser_gen.add_argument('--site', type=str, choices=['bangumi', 'nyaa', 'vcb-s', 'all'], help='选择需要生成稿件的站点 (bangumi,nyaa,vcb-s,all).', default='all')
 
     parser_pub = subparsers.add_parser('publish', help='開啓半自動化發佈流程.')
     parser_pub.add_argument('--site', type=str, choices=['bangumi', 'nyaa'], help='选择需要发布的站点 (bangumi or nyaa).', required=True)
@@ -36,24 +39,17 @@ def main():
         site = args.site
         release_info = yaml.safe_load(read_from_file("./config.yml"))
         gen = DraftGenerator(release_info)
+        sites = ['bangumi', 'nyaa', 'vcb-s'] if site == 'all' else [site]
 
-        if site == 'all' or site == 'bangumi':
+        for site in sites:
+            ext = "md" if site == 'nyaa' else "html"
             write_to_file(
-                f"{release_info["filename"]}_bangumi.html",
-                gen.generate_bangumi_title() + "\n" + gen.generate_bangumi_draft()
-            )
-        if site == 'all' or site == 'nyaa':
-            write_to_file(
-                f"{release_info["filename"]}_nyaa.md",
-                gen.generate_bangumi_title + "\n" + gen.generate_nyaa_draft()
-            )
-        if site == 'all' or site == 'vcb-s':
-            write_to_file(
-                f"{release_info["filename"]}_vcb-s.com.html",
-                gen.generate_vcb_s_title + "\n" + gen.generate_vcb_s_draft()
+                f"{release_info["filename"]}_{site}.{ext}",
+                gen.generate(site, "title") + "\n" + gen.generate(site, "draft")
             )
 
     elif args.command == 'publish':
+        site = args.site
         if site == 'bangumi':
             uploader = BangumiUploader()
         elif site == 'nyaa':

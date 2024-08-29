@@ -1,11 +1,10 @@
 ## ------------------ 公网发布 ------------------
 种子文件路径:
 
-category:
+category: # 必須是字符串
   # 0 = 合集, 1 = 剧场版, 2 = 音乐, 3 = 漫画
   # 4 = 游戏, 5 = 动画, 6 = 其他, 7 = 日剧
-  bangumi:
-
+  bangumi: ""
   # 1_1 = Anime - Anime Music Video
   # 1_2 = Anime - English-translated
   # 1_3 = Anime - Non-English-translated
@@ -23,7 +22,7 @@ category:
   # 5_2 = Pictures - Photos
   # 6_1 = Software - Applications
   # 6_2 = Software - Games
-  nyaa:
+  nyaa: ""
 
 BT站链接: |
   尚未发布

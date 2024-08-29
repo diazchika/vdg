@@ -1,10 +1,11 @@
+import os
 import inspect
 from pathlib import Path
 import re
 import html2text
 from jinja2 import Environment, FileSystemLoader
 import vdg.filters as filters
-from vdg.utils import read_from_file
+from vdg.utils import read_from_file, write_to_file, create_file
 
 
 class DraftGenerator:
@@ -50,14 +51,12 @@ class DraftGenerator:
 
     def __generate_nyaa_draft(self):
         """Generate the Nyaa draft by converting the Bangumi draft to markdown."""
-        bangumi_draft = self.generate_bangumi_draft()
+        bangumi_draft = self.__generate_bangumi_draft()
         converter = html2text.HTML2Text(bodywidth=0)
         md_str = converter.handle(bangumi_draft)
 
         # Append comparison images in markdown format if available
-        comparison_md = read_from_file(
-            self.release_info.get("comparison_images_md", "")
-        )
+        comparison_md = read_from_file( self.release_info["对比图"]["MD"] )
         if comparison_md:
             md_str = "* * *".join([md_str.rsplit("* * *", 1)[0], "\n" + comparison_md])
         return md_str
@@ -72,17 +71,17 @@ class DraftGenerator:
 
     def generate(self, site, content):
         if site == 'bangumi' and content == "draft":
-            return self.generate_bangumi_draft()
+            return self.__generate_bangumi_draft()
         elif site == 'bangumi' and content == "title":
-            return self.generate_bangumi_title()
+            return self.__generate_bangumi_title()
         elif site == 'nyaa' and content == "draft":
-            return self.generate_nyaa_draft()
+            return self.__generate_nyaa_draft()
         elif site == 'nyaa' and content == "title":
-            return self.generate_bangumi_title()
+            return self.__generate_bangumi_title()
         elif site == 'vcb-s' and content == "draft":
-            return self.generate_vcb_s_draft()
+            return self.__generate_vcb_s_draft()
         elif site == 'vcb-s' and content == "title":
-            return self.generate_vcb_s_title()
+            return self.__generate_vcb_s_title()
         else:
             raise ValueError("Invalid site or content type.")
 
@@ -93,7 +92,7 @@ class DraftGenerator:
     @staticmethod
     def generate_configs():
         if os.path.exists("./config.yml"):
-            print("WARNING: Config already exists. Override? (y/n)")
+            print("WARNING: Config already exists. Override? (y/n) ", end='')
             if input().lower() != "y":
                 return
         write_to_file("./config.yml", DraftGenerator.__get_empty_config())
