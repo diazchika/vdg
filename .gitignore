@@ -293,3 +293,7 @@ Temporary Items
 
 # https://stackoverflow.com/questions/38590022/should-we-ignore-misc-xml-and-projectfoldername-iml-in-pycharm-idea-folder
 .idea/misc.xml
+
+### Custom
+testbuild
+testcase/
