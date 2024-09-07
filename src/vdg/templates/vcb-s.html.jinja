@@ -2,13 +2,13 @@
 
 {% if 合作组 %}这个项目与 <strong>{{合作组 | join(' & ')}}</strong> 合作，感谢他们精心制作的字幕。{% endif %}
 
-{% if 画质吐槽.CHS %}{{画质吐槽.CHS}}{% endif %}
+{% if 画质吐槽.CHS %}{{ 画质吐槽.CHS | enforce_space }}{% endif %}
 
-{% if 内嵌字幕.CHS %}{{ 内嵌字幕信息.CHS }}{% endif %}
+{% if 内嵌字幕.CHS %}{{ 内嵌字幕信息.CHS | enforce_space }}{% endif %}
 
-{% if 额外音轨.CHS %}{{ 额外音轨.CHS }}{% endif %}
+{% if 额外音轨.CHS %}{{ 额外音轨.CHS | enforce_space }}{% endif %}
 
-{% if 发布吐槽 %}{{发布吐槽}}{% endif %}
+{% if 发布吐槽 %}{{ 发布吐槽 | enforce_space }}{% endif %}
 
 <!--more-->
 
@@ -23,7 +23,7 @@
 [box style="info"]
 重发修正：
 
-{{重发修正.CHS}}
+{{ 重发修正.CHS | enforce_space }}
 [/box]
 {% endif %}
 

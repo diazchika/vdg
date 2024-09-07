@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version"]
+name = "vdg"
+authors = [
+    {name = "diazchika"},
+]
+description = "VCB-Studio 发布工具"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "selenium~=4.24.0",
+    "PyYAML~=6.0.2",
+    "html2text~=2024.2.26",
+    "Jinja2~=3.1.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/diazchika/vdg"
+
+[project.scripts]
+vdg = "vdg.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "setuptools",
+    "wheel",
+    "build",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "vdg.__version__"}
+
+[tool.setuptools.package-data]
+"vdg.templates" = ["*.jinja", "*.yml"]
