@@ -14,12 +14,12 @@
 {% endfor %}
 
 {% if 内嵌字幕.CHS %}
-    {{ 内嵌字幕.CHS }}<br>
+    {{ 内嵌字幕.CHS | enforce_space }}<br>
     {{ 内嵌字幕.ENG }}<br>
 {% endif %}
 
 {% if 额外音轨.CHS %}
-    {{ 额外音轨.CHS }}<br>
+    {{ 额外音轨.CHS | enforce_space}}<br>
     {{ 额外音轨.ENG }}<br>
 {% endif %}
 {% if 内嵌字幕.CHS or 额外音轨.CHS %}
@@ -39,13 +39,13 @@
 {% endif %}
 
 {% if 画质吐槽.CHS %}
-    {{ 画质吐槽.CHS | add_br }}
-    {{ 画质吐槽.ENG | add_br }}
+    {{ 画质吐槽.CHS | add_br | enforce_space }}
+    {{ 画质吐槽.ENG | add_br | enforce_space }}
     <br>
 {% endif %}
 
 {% if 发布吐槽 %}
-    {{ 发布吐槽 | add_br }}
+    {{ 发布吐槽 | add_br | enforce_space }}
     <br>
 {% endif %}
 </p>
@@ -54,10 +54,10 @@
 {% if 重发修正.CHS %}
 <p>
     重发修正：<br>
-    {{重发修正.CHS | add_br}}
+    {{重发修正.CHS | add_br | enforce_space }}
     <br>
     Reseed comment:<br>
-    {{重发修正.ENG | add_br}}
+    {{重发修正.ENG | add_br | enforce_space }}
     <br>
 </p>
 <hr />

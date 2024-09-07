@@ -9,19 +9,15 @@ from vdg.utils import read_from_file, write_to_file, create_file
 
 
 class DraftGenerator:
-    CJK_PATTERN = r"[\u4E00-\u9FFF\u3400-\u4DBF\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\u31F0-\u31FF\uAC00-\uD7AF]"
-    ENG_PATTERN = r"[a-zA-Z0-9]"
 
     def __init__(self, release_info):
         self.release_info = release_info
 
     def __format_text(self, text):
-        """Format text by adding spaces between CJK and English characters."""
-        text = re.sub(f"({self.CJK_PATTERN})({self.ENG_PATTERN})", r"\1 \2", text)
-        text = re.sub(f"({self.ENG_PATTERN})({self.CJK_PATTERN})", r"\1 \2", text)
         text = re.sub(r"^\n+", "", text)
-        text = re.sub(r"[ \t]+$", "", text, flags=re.MULTILINE)
         text = re.sub(r"\n{3,}", "\n", text)
+        text = re.sub(r"[ \t]+$", "", text, flags=re.MULTILINE)
+        text = re.sub(r'\s+$', '', text)
         return text
 
     def __generate_draft(self, template_name):

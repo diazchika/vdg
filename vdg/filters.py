@@ -1,3 +1,5 @@
+import re
+
 合作组英文 = {
     "SweetSub": "SweetSub",
     "茉语星梦": "MakariHoshiyume",
@@ -12,6 +14,13 @@
     "悠哈璃羽字幕社": "UHA-WINGS",
 }
 
+CJK_PATTERN = r"[\u4E00-\u9FFF\u3400-\u4DBF\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\u31F0-\u31FF\uAC00-\uD7AF]"
+ENG_PATTERN = r"[a-zA-Z0-9]"
+
+def enforce_space(text):
+    text = re.sub(f"({CJK_PATTERN})({ENG_PATTERN})", r"\1 \2", text)
+    text = re.sub(f"({ENG_PATTERN})({CJK_PATTERN})", r"\1 \2", text)
+    return text
 
 def add_br(text):
     return text.replace('\n', '<br>\n')

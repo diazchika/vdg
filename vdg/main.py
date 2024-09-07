@@ -1,5 +1,6 @@
 import argparse
 import sys
+import os
 
 import yaml
 
@@ -13,15 +14,15 @@ def parse_args():
     parser.add_argument('--version', action='version', version=__version__)
     subparsers = parser.add_subparsers(dest='command', required=True)
 
-    subparsers.add_parser('new', help='在當前目錄下生成新的配置文檔 config.yml, 存放截圖鏈接的文件 url.html 和 url.md, 以及用於存放 MediaInfo 的 mediainfo.txt.')
+    subparsers.add_parser('new', help='在当前目录下生成配置文件 config.yml, 存放截图的文件 url.html 和 url.md, 以及存放 MediaInfo 的 mediainfo.txt.')
 
-    parser_gen = subparsers.add_parser('gen', help='根据在当前目录下的配置文檔生成发布稿.')
+    parser_gen = subparsers.add_parser('gen', help='根据在当前目录下的配置文件, 生成发布稿文件.')
     parser_gen.add_argument('--site', type=str, choices=['bangumi', 'nyaa', 'vcb-s', 'all'], help='选择需要生成稿件的站点 (bangumi,nyaa,vcb-s,all).', default='all')
 
-    parser_pub = subparsers.add_parser('publish', help='開啓半自動化發佈流程.')
-    parser_pub.add_argument('--site', type=str, choices=['bangumi', 'nyaa'], help='选择需要发布的站点 (bangumi or nyaa).', required=True)
-    parser_pub.add_argument('--username', type=str, help='Username for the site.', required=True)
-    parser_pub.add_argument('--password', type=str, help='Password for the site.', required=True)
+    parser_pub = subparsers.add_parser('publish', help='开启半自动化发布流程.')
+    parser_pub.add_argument('-s', '--site', type=str, choices=['bangumi', 'nyaa'], help='选择需要发布的站点 (bangumi or nyaa).', required=True)
+    parser_pub.add_argument('-u', '--username', type=str, help='站点用户名.', required=True)
+    parser_pub.add_argument('-p', '--password', type=str, help='站点密码.', required=True)
 
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
@@ -43,8 +44,14 @@ def main():
 
         for site in sites:
             ext = "md" if site == 'nyaa' else "html"
+            filepath = f"./{release_info["filename"]}_{site}.{ext}"
+            if os.path.isfile(filepath):
+                user_input = input(f"The file '{filepath}' already exists. Do you want to overwrite it? (y/n): ").lower()
+                if user_input != 'y':
+                    continue
+
             write_to_file(
-                f"{release_info["filename"]}_{site}.{ext}",
+                filepath,
                 gen.generate(site, "title") + "\n" + gen.generate(site, "draft")
             )
 

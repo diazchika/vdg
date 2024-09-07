@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import WebDriverException
 
 
 class WebAutomationBase:
@@ -26,6 +27,12 @@ class WebAutomationBase:
         profile.update_preferences()
         options.profile = profile
         self.driver = webdriver.Firefox(options=options)
+
+    def close_driver(self):
+        try:
+            self.driver.close()
+        except WebDriverException:
+            pass
 
     def wait_for_element(self, by, value, timeout=10):
         return WebDriverWait(self.driver, timeout).until(
@@ -124,9 +131,9 @@ class BangumiUploader(WebAutomationBase):
         self.upload_file(self.UPLOAD_BUTTON_XPATH, torrent_path)
         self.click_element(self.VCB_IDENTITY_BUTTON_XPATH)
         self.click_element(self.TEAM_SYNC_CHECKBOX_XPATH)
-        print("Please press the Upload button manually and close the geckodriver after you are done.")
+        print("Please click the Upload button manually.")
         input("Press Enter to quit...")
-        self.driver.close()
+        self.close_driver()
         # self.click_element(self.FINAL_PUBLISH_BUTTON_XPATH)
 
 class NyaaUploader(WebAutomationBase):
@@ -170,6 +177,6 @@ class NyaaUploader(WebAutomationBase):
         self.click_element(self.COMPLETE_BUTTON_XPATH)
         self.enter_text(self.INFORMATION_FIELD_XPATH, "https://vcb-s.com/archives/138")
         self.enter_text(self.DESCRIPTION_FIELD_XPATH, desc)
-        print("Please press the Upload button manually and close the geckodriver after you are done.")
+        print("Please click the Upload button manually.")
         input("Press Enter to quit...")
-        self.driver.close()
+        self.close_driver()
