@@ -1,28 +1,24 @@
 ## ------------------ 公网发布 ------------------
+
+# 必须是绝对路径
 种子文件路径:
 
-category: # 必須是字符串
+category:
+  # -------------- BANGUMI --------------
   # 0 = 合集, 1 = 剧场版, 2 = 音乐, 3 = 漫画
   # 4 = 游戏, 5 = 动画, 6 = 其他, 7 = 日剧
-  bangumi: ""
+  bangumi: "" # 必須是字符串
+
+  # --------------- NYAA ----------------
   # 1_1 = Anime - Anime Music Video
   # 1_2 = Anime - English-translated
   # 1_3 = Anime - Non-English-translated
   # 1_4 = Anime - Raw
-  # 2_1 = Audio - Lossless
-  # 2_2 = Audio - Lossy
-  # 3_1 = Literature - English-translated
-  # 3_2 = Literature - Non-English-translated
-  # 3_3 = Literature - Raw
   # 4_1 = Live Action - English-translated
   # 4_2 = Live Action - Idol/Promotional Video
   # 4_3 = Live Action - Non-English-translated
   # 4_4 = Live Action - Raw
-  # 5_1 = Pictures - Graphics
-  # 5_2 = Pictures - Photos
-  # 6_1 = Software - Applications
-  # 6_2 = Software - Games
-  nyaa: ""
+  nyaa: "" # 必須是字符串
 
 BT站链接: |
   尚未发布
@@ -35,8 +31,11 @@ filename:
 重发: False
 
 ## ------------------ 标题 ------------------
-# 合作组 Chinese 名，必须用 sequence，例：[喵萌奶茶屋, philosophy-raws]
+# 合作组 Chinese 名，必须用 sequence，例：[喵萌奶茶屋, 风之圣殿]
 # 如果没有合作组必须留空。务必检查正片文件的文件名。
+# 当前接受的值：
+# SweetSub, 茉语星梦, 风之圣殿, 千夏字幕组, 喵萌奶茶屋, 诸神字幕组,
+# 天香字幕社, 星空字幕组, 白恋字幕组, 动漫国字幕组, 悠哈璃羽字幕社
 合作组:
 
 外站标题: [中文, ENGLISH, 日本語]
@@ -95,7 +94,7 @@ filename:
 ## ------------------ 附加信息 ------------------
 
 对比图:
-  HTML: "url.html"
-  MD: "url.md"
+  HTML: "url.html" # 若没有对比图则删除
+  MD: "url.md" # 若没有对比图则删除
 
 MediaInfo: "mediainfo.txt"
