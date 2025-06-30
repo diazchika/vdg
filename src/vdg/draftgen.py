@@ -52,9 +52,9 @@ class DraftGenerator:
         md_str = converter.handle(bangumi_draft)
 
         # Append comparison images in markdown format if available
-        comparison_md = read_from_file( self.release_info["对比图"]["MD"] )
-        if comparison_md:
-            md_str = "* * *".join([md_str.rsplit("* * *", 1)[0], "\n" + comparison_md])
+        # comparison_md = read_from_file( self.release_info["对比图"]["MD"] )
+        # if comparison_md:
+        #     md_str = "* * *".join([md_str.rsplit("* * *", 1)[0], "\n" + comparison_md])
         return md_str
 
     def __generate_vcb_s_draft(self):
