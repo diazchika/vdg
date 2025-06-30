@@ -39,13 +39,13 @@
 {% endif %}
 
 {% if 画质吐槽.CHS %}
-    {{ 画质吐槽.CHS | add_br | enforce_space }}
-    {{ 画质吐槽.ENG | add_br | enforce_space }}
+    {{ 画质吐槽.CHS | enforce_space }}
+    {{ 画质吐槽.ENG | enforce_space }}
     <br>
 {% endif %}
 
 {% if 发布吐槽 %}
-    {{ 发布吐槽 | add_br | enforce_space }}
+    {{ 发布吐槽 | enforce_space }}
     <br>
 {% endif %}
 </p>
@@ -54,10 +54,10 @@
 {% if 重发修正.CHS %}
 <p>
     重发修正：<br>
-    {{重发修正.CHS | add_br | enforce_space }}
+    {{重发修正.CHS | enforce_space }}
     <br>
     Reseed comment:<br>
-    {{重发修正.ENG | add_br | enforce_space }}
+    {{重发修正.ENG | enforce_space }}
     <br>
 </p>
 <hr />
@@ -74,7 +74,7 @@
 
     {% if 来源感谢 %}
     感谢所有资源提供者 / Thanks to all resource providers: <br>
-    {{来源感谢 | add_br}}
+    {{来源感谢}}
     <br>
     {% endif %}
 </p>
